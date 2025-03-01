@@ -19,11 +19,13 @@ const user = require("./routes/userRoute");
 const product = require("./routes/productRoute");
 const order = require("./routes/orderRoute");
 const payment = require("./routes/paymentRoute");
+const smartContract= require ("./routes/smartContractRoute");
 
 app.use("/api/v1", user);
 app.use("/api/v1", product);
 app.use("/api/v1", order);
 app.use("/api/v1", payment);
+app.use("/api/v1", smartContract);
 
 // deployment
 __dirname = path.resolve();
@@ -43,7 +45,9 @@ if (process.env.NODE_ENV === "production") {
 
 // error middleware
 // app.use(errorMiddleware);
+const expressListRoutes = require("express-list-routes");
 
+expressListRoutes(app); 
 module.exports = app;
 
 const errorPayment = require("./controllers/paymentController");
